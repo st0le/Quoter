@@ -15,6 +15,19 @@
 	  <p class="alert alert-danger"><%= alert %></p>
 	<% end %>
 
+	<% if user_signed_in? %>
+		<ul>
+			<li><% link_to 'Submit Quote', new_quote_path %></li>
+			<li><% link_to 'My Account', edit_user_registration_path %> </li>
+			<li><% link_to 'Sign Out', destroy_user_session_path %> </li>
+		</ul>
+	<% else %>
+		<ul>
+			<li><% link_to 'Register', new_user_registration_path %> </li>
+			<li><% link_to 'Sign In', new_user_session_path %> </li>
+		</ul>
+	<% end %>
+
 <%= yield %>
 
 </body>
