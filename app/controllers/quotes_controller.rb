@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorized_user, only: [:edit, :update, :destroy]
   # GET /quotes
   # GET /quotes.json
   def index
@@ -14,7 +15,7 @@ class QuotesController < ApplicationController
 
   # GET /quotes/new
   def new
-    @quote = Quote.new
+    @quote = current_user.quotes.build
   end
 
   # GET /quotes/1/edit
@@ -24,7 +25,7 @@ class QuotesController < ApplicationController
   # POST /quotes
   # POST /quotes.json
   def create
-    @quote = Quote.new(quote_params)
+    @quote = current_user.quotes.build(quote_params)
 
     respond_to do |format|
       if @quote.save
@@ -67,6 +68,10 @@ class QuotesController < ApplicationController
       @quote = Quote.find(params[:id])
     end
 
+    def authorized_user
+      @quote = current_user.quotes.find_by(id: params[:id])
+      redirect_to quotes_path, notice: "Not authorized to edit this link" if @quote.nil?
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def quote_params
       params.require(:quote).permit(:author, :quote)
