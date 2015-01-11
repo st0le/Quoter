@@ -1,8 +1,7 @@
-== README
 
 #Quoter
 
-This is a sample rails application. I'm following @mackenziechild video tutorials.
+This is a sample Ruby on Rails application. I'm following @mackenziechild video tutorials.
 
 TODO:
 [x] Created basic site.
