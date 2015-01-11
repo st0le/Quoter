@@ -1,31 +1,19 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Listing Quotes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th>Quote</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @quotes.each do |quote| %>
-      <tr>
-        <td><%= quote.author %></td>
-        <td><%= quote.quote %></td>
-        <td><%= link_to 'Show', quote %></td>
+<ul class="list-unstyled">
+  <% @quotes.each do |quote| %>
+    <li class="list-group-item">
+      <p><%= quote.quote %></p>
+      <h5><%= quote.author %></h5>
+      <ul class="list-inline">
+        <li><%= link_to 'Show', quote %></li>
         <% if quote.user == current_user %>
-          <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
-          <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <li><%= link_to 'Edit', edit_quote_path(quote) %></li>
+          <li><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <% end -%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
+      </ul>
+    </li>
+  <% end %>
+  <%= will_paginate @quotes %>
+</ul>
