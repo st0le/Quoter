@@ -22,6 +22,18 @@ class QuotesController < ApplicationController
   def edit
   end
 
+  def upvote
+    @quote = Quote.find(params[:id])
+    @quote.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @quote = Quote.find(params[:id])
+    @quote.downvote_by current_user
+    redirect_to :back
+  end
+
   # POST /quotes
   # POST /quotes.json
   def create

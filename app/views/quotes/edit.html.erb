@@ -1,6 +1,17 @@
+
+<div class='btn-group'>
+	<%= link_to quotes_path,class: 'btn btn-default btn-sm' do %>
+		<span class='glyphicon glyphicon-arrow-left'></span> 
+		Back
+	<% end %>
+	<% if @quote.user == current_user -%>
+	  <%= link_to @quote,class: 'btn btn-default btn-sm' do %>
+	    <span class='glyphicon glyphicon-comment'></span> 
+	    Show Comments
+	  <% end %>
+	<% end -%>
+</div>
+
 <h1>Editing Quote</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @quote %> |
-<%= link_to 'Back', quotes_path %>
