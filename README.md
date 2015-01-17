@@ -8,6 +8,10 @@ TODO:
 - [x] Added pagination.
   - [ ] Add lazy loading?
 - [ ] Enable users to comment or explain the meaning of the quote.
-- [ ] Add voting/rating of quotes
+- [x] Add voting/rating of quotes
+  - [ ] List all quotes voted by user.
 - [ ] Let users sort the main index by rating/created_at
 - [ ] Search quotes
+- [ ] Tag Quotes
+- [ ] Suggest Edits
+
